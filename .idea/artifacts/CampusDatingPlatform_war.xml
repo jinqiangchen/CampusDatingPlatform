@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CampusDatingPlatform:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="CampusDatingPlatform.war">
+      <element id="artifact" artifact-name="CampusDatingPlatform:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.jqchen.dao.BackpwdMapper" >
+  <resultMap id="BaseResultMap" type="cn.net.jqchen.model.Backpwd" >
+    <id column="user_account" property="userAccount" jdbcType="VARCHAR" />
+    <result column="question1" property="question1" jdbcType="VARCHAR" />
+    <result column="answer1" property="answer1" jdbcType="VARCHAR" />
+    <result column="question2" property="question2" jdbcType="VARCHAR" />
+    <result column="answer2" property="answer2" jdbcType="VARCHAR" />
+    <result column="question3" property="question3" jdbcType="VARCHAR" />
+    <result column="answer3" property="answer3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_account, question1, answer1, question2, answer2, question3, answer3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.net.jqchen.model.BackpwdExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from backpwd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from backpwd
+    where user_account = #{userAccount,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from backpwd
+    where user_account = #{userAccount,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.net.jqchen.model.BackpwdExample" >
+    delete from backpwd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.net.jqchen.model.Backpwd" >
+    insert into backpwd (user_account, question1, answer1, 
+      question2, answer2, question3, 
+      answer3)
+    values (#{userAccount,jdbcType=VARCHAR}, #{question1,jdbcType=VARCHAR}, #{answer1,jdbcType=VARCHAR}, 
+      #{question2,jdbcType=VARCHAR}, #{answer2,jdbcType=VARCHAR}, #{question3,jdbcType=VARCHAR}, 
+      #{answer3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.net.jqchen.model.Backpwd" >
+    insert into backpwd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userAccount != null" >
+        user_account,
+      </if>
+      <if test="question1 != null" >
+        question1,
+      </if>
+      <if test="answer1 != null" >
+        answer1,
+      </if>
+      <if test="question2 != null" >
+        question2,
+      </if>
+      <if test="answer2 != null" >
+        answer2,
+      </if>
+      <if test="question3 != null" >
+        question3,
+      </if>
+      <if test="answer3 != null" >
+        answer3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userAccount != null" >
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="question1 != null" >
+        #{question1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer1 != null" >
+        #{answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="question2 != null" >
+        #{question2,jdbcType=VARCHAR},
+      </if>
+      <if test="answer2 != null" >
+        #{answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="question3 != null" >
+        #{question3,jdbcType=VARCHAR},
+      </if>
+      <if test="answer3 != null" >
+        #{answer3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.net.jqchen.model.BackpwdExample" resultType="java.lang.Integer" >
+    select count(*) from backpwd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update backpwd
+    <set >
+      <if test="record.userAccount != null" >
+        user_account = #{record.userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question1 != null" >
+        question1 = #{record.question1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer1 != null" >
+        answer1 = #{record.answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question2 != null" >
+        question2 = #{record.question2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer2 != null" >
+        answer2 = #{record.answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question3 != null" >
+        question3 = #{record.question3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer3 != null" >
+        answer3 = #{record.answer3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update backpwd
+    set user_account = #{record.userAccount,jdbcType=VARCHAR},
+      question1 = #{record.question1,jdbcType=VARCHAR},
+      answer1 = #{record.answer1,jdbcType=VARCHAR},
+      question2 = #{record.question2,jdbcType=VARCHAR},
+      answer2 = #{record.answer2,jdbcType=VARCHAR},
+      question3 = #{record.question3,jdbcType=VARCHAR},
+      answer3 = #{record.answer3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.net.jqchen.model.Backpwd" >
+    update backpwd
+    <set >
+      <if test="question1 != null" >
+        question1 = #{question1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer1 != null" >
+        answer1 = #{answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="question2 != null" >
+        question2 = #{question2,jdbcType=VARCHAR},
+      </if>
+      <if test="answer2 != null" >
+        answer2 = #{answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="question3 != null" >
+        question3 = #{question3,jdbcType=VARCHAR},
+      </if>
+      <if test="answer3 != null" >
+        answer3 = #{answer3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_account = #{userAccount,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.net.jqchen.model.Backpwd" >
+    update backpwd
+    set question1 = #{question1,jdbcType=VARCHAR},
+      answer1 = #{answer1,jdbcType=VARCHAR},
+      question2 = #{question2,jdbcType=VARCHAR},
+      answer2 = #{answer2,jdbcType=VARCHAR},
+      question3 = #{question3,jdbcType=VARCHAR},
+      answer3 = #{answer3,jdbcType=VARCHAR}
+    where user_account = #{userAccount,jdbcType=VARCHAR}
+  </update>
+</mapper>

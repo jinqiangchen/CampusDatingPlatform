@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.net.jqchen.dao.BulletinMapper" >
+  <resultMap id="BaseResultMap" type="cn.net.jqchen.model.Bulletin" >
+    <id column="bulletin_id" property="bulletinId" jdbcType="INTEGER" />
+    <result column="bulletin_type" property="bulletinType" jdbcType="TINYINT" />
+    <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="photo_id" property="photoId" jdbcType="INTEGER" />
+    <result column="video_id" property="videoId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bulletin_id, bulletin_type, publisher_id, text, photo_id, video_id, create_time, 
+    end_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.net.jqchen.model.BulletinExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bulletin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bulletin
+    where bulletin_id = #{bulletinId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bulletin
+    where bulletin_id = #{bulletinId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.net.jqchen.model.BulletinExample" >
+    delete from bulletin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.net.jqchen.model.Bulletin" >
+    insert into bulletin (bulletin_id, bulletin_type, publisher_id, 
+      text, photo_id, video_id, 
+      create_time, end_time)
+    values (#{bulletinId,jdbcType=INTEGER}, #{bulletinType,jdbcType=TINYINT}, #{publisherId,jdbcType=INTEGER}, 
+      #{text,jdbcType=VARCHAR}, #{photoId,jdbcType=INTEGER}, #{videoId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.net.jqchen.model.Bulletin" >
+    insert into bulletin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bulletinId != null" >
+        bulletin_id,
+      </if>
+      <if test="bulletinType != null" >
+        bulletin_type,
+      </if>
+      <if test="publisherId != null" >
+        publisher_id,
+      </if>
+      <if test="text != null" >
+        text,
+      </if>
+      <if test="photoId != null" >
+        photo_id,
+      </if>
+      <if test="videoId != null" >
+        video_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bulletinId != null" >
+        #{bulletinId,jdbcType=INTEGER},
+      </if>
+      <if test="bulletinType != null" >
+        #{bulletinType,jdbcType=TINYINT},
+      </if>
+      <if test="publisherId != null" >
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="photoId != null" >
+        #{photoId,jdbcType=INTEGER},
+      </if>
+      <if test="videoId != null" >
+        #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.net.jqchen.model.BulletinExample" resultType="java.lang.Integer" >
+    select count(*) from bulletin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bulletin
+    <set >
+      <if test="record.bulletinId != null" >
+        bulletin_id = #{record.bulletinId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bulletinType != null" >
+        bulletin_type = #{record.bulletinType,jdbcType=TINYINT},
+      </if>
+      <if test="record.publisherId != null" >
+        publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.text != null" >
+        text = #{record.text,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoId != null" >
+        photo_id = #{record.photoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.videoId != null" >
+        video_id = #{record.videoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bulletin
+    set bulletin_id = #{record.bulletinId,jdbcType=INTEGER},
+      bulletin_type = #{record.bulletinType,jdbcType=TINYINT},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      text = #{record.text,jdbcType=VARCHAR},
+      photo_id = #{record.photoId,jdbcType=INTEGER},
+      video_id = #{record.videoId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.net.jqchen.model.Bulletin" >
+    update bulletin
+    <set >
+      <if test="bulletinType != null" >
+        bulletin_type = #{bulletinType,jdbcType=TINYINT},
+      </if>
+      <if test="publisherId != null" >
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="text != null" >
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="photoId != null" >
+        photo_id = #{photoId,jdbcType=INTEGER},
+      </if>
+      <if test="videoId != null" >
+        video_id = #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bulletin_id = #{bulletinId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.net.jqchen.model.Bulletin" >
+    update bulletin
+    set bulletin_type = #{bulletinType,jdbcType=TINYINT},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      text = #{text,jdbcType=VARCHAR},
+      photo_id = #{photoId,jdbcType=INTEGER},
+      video_id = #{videoId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where bulletin_id = #{bulletinId,jdbcType=INTEGER}
+  </update>
+</mapper>
