@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="static/css/reset.css" />
     <link rel="stylesheet" href="static/css/common.css" />
     <link rel="stylesheet" href="static/css/font-awesome.min.css" />
+
 </head>
 <body>
 <div class="wrap login_wrap">
@@ -30,20 +31,20 @@
                     </div>
                     <div class="ececk_warning"><span>账号不能为空</span></div>
                     <div class="form_text_ipt">
-                        <input name="password" id="password" type="password" placeholder="密码">
+                        <input name="password" id="password" type="password" placeholder="密码" onkeypress="if(event.keyCode==13){btnValidate.click();return false;}">
                     </div>
                     <div class="ececk_warning"><span>密码不能为空</span></div>
 
                     <div class="form_check_ipt">
                         <div class="left check_left">
-                            <label><input name="auto" type="checkbox"> 下次自动登录</label>
+                            <label><input name="rememberMe" id="rememberMe" type="checkbox">记住密码</label>
                         </div>
                         <div class="right check_right">
-                            <a href="updatePwd.jsp">忘记密码？</a>
+                            <a href="login/backpwd">忘记密码？</a>
                         </div>
                     </div>
                     <div class="form_btn">
-                        <button type="button" onclick="mylogin()">登录</button>
+                        <button id="btnValidate" type="button" onclick="mylogin()">登录</button>
                     </div>
                     <div class="form_reg_btn">
                         <span>还没有帐号？</span><a href="register.jsp">马上注册</a>
@@ -55,7 +56,16 @@
 </div>
 <script type="text/javascript" src="static/js/jquery.min.js" ></script>
 <script type="text/javascript" src="static/js/common.js" ></script>
-
+<script type="text/javascript" src="static/js/jquery.cookie.js"></script>
+<script>
+    $(document).ready(function () {
+        if ($.cookie("rmbUser") == "true") {
+            $("#rememberMe").attr("checked", true);
+            $("#username").val($.cookie("username"));
+            $("#password").val($.cookie("password"));
+        }
+    });
+</script>
 </body>
 
 <script type="text/javascript"  >
@@ -70,6 +80,16 @@
             alert("密码不能为空");
             return;
         }
+        if ($("#rememberMe").prop("checked")) {
+            $.cookie("rmbUser", "true", { expires: 7 }); //存储一个带7天期限的cookie
+            $.cookie("username", userId, { expires: 7 });
+            $.cookie("password", password, { expires: 7 });
+        }
+        else {
+            $.cookie("rmbUser", "false", { expire: -1 });
+            $.cookie("username", "", { expires: -1 });
+            $.cookie("password", "", { expires: -1 });
+        }
         var data = {};
         data.loginAccount = userId;
         data.loginPwd = password;
@@ -81,7 +101,7 @@
             sync : true,
             success : function(result) {
                 //alert(result);
-                console.log(result)
+                //console.log(result)
                 if(result.status==200){
                     if(result.data=="1"){
                         $("#formlogin").submit();

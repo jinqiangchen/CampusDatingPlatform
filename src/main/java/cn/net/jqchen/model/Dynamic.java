@@ -5,7 +5,7 @@ import java.util.Date;
 public class Dynamic {
     private Integer dynamicId;
 
-    private Integer publisherId;
+    private String publisherId;
 
     private String text;
 
@@ -23,11 +23,11 @@ public class Dynamic {
         this.dynamicId = dynamicId;
     }
 
-    public Integer getPublisherId() {
+    public String getPublisherId() {
         return publisherId;
     }
 
-    public void setPublisherId(Integer publisherId) {
+    public void setPublisherId(String publisherId) {
         this.publisherId = publisherId;
     }
 

@@ -10,9 +10,9 @@
 <head>
     <meta charset="utf-8">
     <title>设置密保问题</title>
-    <link rel="stylesheet" href="static/css/reset.css" />
-    <link rel="stylesheet" href="static/css/common.css" />
-    <link rel="stylesheet" href="static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../static/css/reset.css" />
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" />
 </head>
 <body>
 <div class="wrap login_wrap">
@@ -71,8 +71,8 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="static/js/jquery.min.js" ></script>
-<script type="text/javascript" src="static/js/common.js" ></script>
+<script type="text/javascript" src="../static/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../static/js/common.js" ></script>
 </body>
 <script type="text/javascript">
     function mysub() {

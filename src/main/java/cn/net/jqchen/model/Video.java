@@ -5,7 +5,7 @@ import java.util.Date;
 public class Video {
     private Integer videoId;
 
-    private Integer owerId;
+    private String owerId;
 
     private String videoName;
 
@@ -23,11 +23,11 @@ public class Video {
         this.videoId = videoId;
     }
 
-    public Integer getOwerId() {
+    public String getOwerId() {
         return owerId;
     }
 
-    public void setOwerId(Integer owerId) {
+    public void setOwerId(String owerId) {
         this.owerId = owerId;
     }
 

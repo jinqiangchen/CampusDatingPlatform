@@ -5,7 +5,7 @@ import java.util.Date;
 public class Photo {
     private Integer photoId;
 
-    private Integer owerId;
+    private String owerId;
 
     private String photoName;
 
@@ -23,11 +23,11 @@ public class Photo {
         this.photoId = photoId;
     }
 
-    public Integer getOwerId() {
+    public String getOwerId() {
         return owerId;
     }
 
-    public void setOwerId(Integer owerId) {
+    public void setOwerId(String owerId) {
         this.owerId = owerId;
     }
 

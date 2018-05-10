@@ -6,16 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>我的好友</title>
+    <body>
+    <header><jsp:include page="header.jsp"></jsp:include></header>
+    <div style=""
+    </body>
 
-</head>
-
-<body>
-<jsp:include page="header.jsp"></jsp:include>
-</body>
 
 </html>
 

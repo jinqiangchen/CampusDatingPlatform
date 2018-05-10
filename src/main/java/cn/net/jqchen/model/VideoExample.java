@@ -175,7 +175,7 @@ public class VideoExample {
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdEqualTo(Integer value) {
+        public Criteria andOwerIdEqualTo(String value) {
             addCriterion("ower_id =", value, "owerId");
             return (Criteria) this;
         }

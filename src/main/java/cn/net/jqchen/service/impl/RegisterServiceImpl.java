@@ -6,6 +6,7 @@ import cn.net.jqchen.model.Login;
 import cn.net.jqchen.model.User;
 import cn.net.jqchen.pojo.Register;
 import cn.net.jqchen.service.RegisterService;
+import cn.net.jqchen.utils.MD5Util;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +22,7 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public void register(Register register) {
         String Account=register.getUsername();
-        String password=register.getPassword();
+        String password= MD5Util.md5(register.getPassword());
         String nickName=register.getNickname();
         String realName=register.getRealname();
         Integer age=register.getAge();

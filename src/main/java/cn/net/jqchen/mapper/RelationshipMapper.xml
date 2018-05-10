@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.net.jqchen.dao.RelationshipMapper" >
   <resultMap id="BaseResultMap" type="cn.net.jqchen.model.Relationship" >
-    <id column="ower_id" property="owerId" jdbcType="INTEGER" />
-    <result column="friend_id" property="friendId" jdbcType="INTEGER" />
+    <id column="relationship_id" property="relationshipId" jdbcType="INTEGER" />
+    <result column="ower_id" property="owerId" jdbcType="VARCHAR" />
+    <result column="friend_id" property="friendId" jdbcType="VARCHAR" />
     <result column="note" property="note" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ower_id, friend_id, note
+    relationship_id, ower_id, friend_id, note
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.net.jqchen.model.RelationshipExample" >
     select
@@ -85,11 +86,11 @@
     select 
     <include refid="Base_Column_List" />
     from relationship
-    where ower_id = #{owerId,jdbcType=INTEGER}
+    where relationship_id = #{relationshipId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from relationship
-    where ower_id = #{owerId,jdbcType=INTEGER}
+    where relationship_id = #{relationshipId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="cn.net.jqchen.model.RelationshipExample" >
     delete from relationship
@@ -98,14 +99,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.net.jqchen.model.Relationship" >
-    insert into relationship (ower_id, friend_id, note
-      )
-    values (#{owerId,jdbcType=INTEGER}, #{friendId,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}
-      )
+    insert into relationship (relationship_id, ower_id, friend_id, 
+      note)
+    values (#{relationshipId,jdbcType=INTEGER}, #{owerId,jdbcType=VARCHAR}, #{friendId,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.net.jqchen.model.Relationship" >
     insert into relationship
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="relationshipId != null" >
+        relationship_id,
+      </if>
       <if test="owerId != null" >
         ower_id,
       </if>
@@ -117,11 +121,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="relationshipId != null" >
+        #{relationshipId,jdbcType=INTEGER},
+      </if>
       <if test="owerId != null" >
-        #{owerId,jdbcType=INTEGER},
+        #{owerId,jdbcType=VARCHAR},
       </if>
       <if test="friendId != null" >
-        #{friendId,jdbcType=INTEGER},
+        #{friendId,jdbcType=VARCHAR},
       </if>
       <if test="note != null" >
         #{note,jdbcType=VARCHAR},
@@ -137,11 +144,14 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update relationship
     <set >
+      <if test="record.relationshipId != null" >
+        relationship_id = #{record.relationshipId,jdbcType=INTEGER},
+      </if>
       <if test="record.owerId != null" >
-        ower_id = #{record.owerId,jdbcType=INTEGER},
+        ower_id = #{record.owerId,jdbcType=VARCHAR},
       </if>
       <if test="record.friendId != null" >
-        friend_id = #{record.friendId,jdbcType=INTEGER},
+        friend_id = #{record.friendId,jdbcType=VARCHAR},
       </if>
       <if test="record.note != null" >
         note = #{record.note,jdbcType=VARCHAR},
@@ -153,8 +163,9 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update relationship
-    set ower_id = #{record.owerId,jdbcType=INTEGER},
-      friend_id = #{record.friendId,jdbcType=INTEGER},
+    set relationship_id = #{record.relationshipId,jdbcType=INTEGER},
+      ower_id = #{record.owerId,jdbcType=VARCHAR},
+      friend_id = #{record.friendId,jdbcType=VARCHAR},
       note = #{record.note,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -163,19 +174,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.net.jqchen.model.Relationship" >
     update relationship
     <set >
+      <if test="owerId != null" >
+        ower_id = #{owerId,jdbcType=VARCHAR},
+      </if>
       <if test="friendId != null" >
-        friend_id = #{friendId,jdbcType=INTEGER},
+        friend_id = #{friendId,jdbcType=VARCHAR},
       </if>
       <if test="note != null" >
         note = #{note,jdbcType=VARCHAR},
       </if>
     </set>
-    where ower_id = #{owerId,jdbcType=INTEGER}
+    where relationship_id = #{relationshipId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.net.jqchen.model.Relationship" >
     update relationship
-    set friend_id = #{friendId,jdbcType=INTEGER},
+    set ower_id = #{owerId,jdbcType=VARCHAR},
+      friend_id = #{friendId,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR}
-    where ower_id = #{owerId,jdbcType=INTEGER}
+    where relationship_id = #{relationshipId,jdbcType=INTEGER}
   </update>
 </mapper>

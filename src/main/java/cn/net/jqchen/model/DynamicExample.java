@@ -175,7 +175,7 @@ public class DynamicExample {
             return (Criteria) this;
         }
 
-        public Criteria andPublisherIdEqualTo(Integer value) {
+        public Criteria andPublisherIdEqualTo(String value) {
             addCriterion("publisher_id =", value, "publisherId");
             return (Criteria) this;
         }

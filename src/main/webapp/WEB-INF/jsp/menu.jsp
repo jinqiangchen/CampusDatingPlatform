@@ -7,16 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>主页</title>
-    <link rel="stylesheet" href="../static/css/common.css"/>
-</head>
-<body>
-
-<jsp:include page="header.jsp"></jsp:include>
-
-</body>
-
+<frameset id="head" rows="110px,*" frameborder="no" noresize="noresize">
+    <frame src="header">
+    <frameset id="main" cols="25%,*" frameborder="no" noresize="noresize">
+        <frame name="left" src="menu_left" noresize="noresize">
+        <frame name="right" src="menu_right" noresize="noresize">
+    </frameset>
+</frameset>
 </html>
 

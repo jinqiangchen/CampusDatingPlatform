@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: 陈进强
@@ -7,15 +8,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>我的相册</title>
+<frameset id="head" rows="110px,*" frameborder="no" noresize="noresize">
+    <frame src="header" noresize="noresize">
+    <frame src="myphoto_content"noresize="noresize">
+</frameset>
 
-</head>
-
-<body>
-<jsp:include page="header.jsp"></jsp:include>
-</body>
 
 </html>
 

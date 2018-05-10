@@ -16,22 +16,22 @@
     <link rel="stylesheet" href="../static/css/common.css" />
 </head>
 <body>
-<div class="login_wrap1">
+<div class="login_wrap1" style="width: 100%; height: 40px; position: fixed; top: 0;opacity:0.75;">
     <ul class="nav nav-tabs" style="text-align: center;">
         <li>
-            <a href="menu"><i class="glyphicon glyphicon-home"></i> 主页</a>
+            <a href="menu" target="head"><i class="glyphicon glyphicon-home"></i> 主页</a>
         </li>
         <li>
-            <a href="aboutme"><i class="glyphicon glyphicon-user"></i>关于我</a>
+            <a href="aboutme" target="head" ><i class="glyphicon glyphicon-user"></i>关于我</a>
         </li>
         <li>
-            <a href="myphoto"><i class="glyphicon glyphicon-camera"></i>我的相册 </a>
+            <a href="myphoto" target="head"><i class="glyphicon glyphicon-camera"></i>我的相册 </a>
         </li>
         <li>
-            <a href="myvideo"><i class="glyphicon glyphicon-facetime-video"></i>我的视频 </a>
+            <a href="myvideo" target="head"><i class="glyphicon glyphicon-facetime-video"></i>我的视频 </a>
         </li>
         <li>
-            <a href="myfriends"><i class="glyphicon glyphicon-comment"></i>我的好友</a>
+            <a href="myfriends" target="head"><i class="glyphicon glyphicon-comment"></i>我的好友</a>
         </li>
         <li style="float: right;">
             <a href="logout">
@@ -39,20 +39,25 @@
 
         </li>
         <li style="float: right;">
-            <a class="dropdown-toggle" data-toggle="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" >
                 <i class="glyphicon glyphicon-cog"></i>设置
                 <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
-                <li><a href="setQuestion" onclick="check();return false">设置密保问题</a> </li>
-                <li><a href="updatePwd" onclick="myconfirm();return false">修改密码</a> </li>
+            <ul class="dropdown-menu" >
+                <li ><a href="setQuestion" target="head" onclick="check();return false">设置密保问题</a> </li>
+                <li><a href="updatePwd" target="head" onclick="myconfirm();return false">修改密码</a> </li>
             </ul>
         </li>
         <li style="float: right;font-family: '微软雅黑';font-size:large;">欢迎来到${account} 的空间!
             <img src="../static/images/logo_bg1.jpg" width="40px" height="40px" class="img-circle">
         </li>
         <li style="float: right;">
-            <input type="text" class="form-control" placeholder="通过账号查找好友">
+            <div class="box">
+                <label for="q" id="q_label" >查找好友</label>
+                <input id="q"  type="text" onkeypress="if(event.keyCode==13){btn.click();return false;}" >
+                <input id="btn" type="button" onclick="mySearch()" hidden="hidden">
+                <i class="glyphicon glyphicon-search" id="q_i"></i>
+            </div>
         </li>
     </ul>
 </div>
@@ -91,8 +96,42 @@
     }
     function myconfirm() {
         if( r=confirm("确认修改密码？")){
-            window.
-        }
+            window.location.href="updatePwd";
+            return true;}
+            else{
+            return  false;
+            }
     }
+    function mySearch() {
+     var name=$('#q').val();
+     var data={};
+     data.name=name;
+        $.ajax({
+            type : 'post',
+            url:'../search/searchByName',
+            data : data,
+            cache : false,
+            sync : true,
+            success : function(result) {
+                //alert(result);
+                console.log(result)
+                if(result.status==200){
+                    if(result.data==0){
+                        alert("没有搜索到相关用户！");
+                        return;
+                    }
+                    else if(result.data==1){
+                        window.location.href="showSearch";
+                        return;
+                    }
+                }
+            },
+            error : function() {
+                alert("请求失败!");
+            }
+        });
+    }
+
+
 </script>
 </html>

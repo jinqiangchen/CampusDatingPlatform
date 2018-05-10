@@ -7,10 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>管理员界面</title>
-</head>
-<body>
-i am admin
-</body>
+    <frameset rows="110px,*" frameborder="no">
+        <frame src="header">
+        <frameset cols="30%,*" frameborder="no">
+             <frame src="">
+             <frame src="chat">
+        </frameset>
+    </frameset>
 </html>

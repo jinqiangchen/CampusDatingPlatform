@@ -1,8 +1,8 @@
 header{
 	width: 100%;
-	height: 50px;
-	background: #1e1b29;
-	border-bottom: solid 4px red;
+	height: 40px;
+
+	border-bottom: solid 4px ;
 }
 a:link {
 	color:#3C3C3C;
@@ -205,4 +205,55 @@ a:active {
 .other_right a:hover{
 	color:#AEEEEE;
 }
+/**
+  *放置input的div盒子
+  *1.此处应我的项目需要，加了些特别的设置，如字体、背景色等，按需添加；
+  *2.内层input不加边框，看起来效果会自然一点，所以外层div设置了边框和圆角
+*/
+.box{
+	border: 5px solid #eeeeee;
+	border-radius: 20px;
+	font-size: 15px;
+	text-align: center;
+}
 
+/**
+  *label标签样式 放在.box下，不至于影响其他的label
+  *采取绝对定位，位置根据需求确定
+*/
+.box label{
+	z-index: 2;
+	position: absolute;
+	left: 50%;
+	margin-left: -8%;
+	color: #B2B2B2;
+	top: 1.3rem;
+	font-weight: normal;
+}
+
+/**
+  *input标签样式
+  *宽度适应外层div
+  *隐藏边框
+  *这里有个小技巧，height与line-height值相等，可保证文字垂直居中；但我发现文字比图标略偏下，进行了微调；
+*/
+.box input{
+	text-indent: 15px;
+	height: 3.5rem;
+	line-height: 3.7rem;
+	width: 100%;
+	border: none;
+	outline: none;
+}
+
+/**
+  *图标样式
+  *绝对定位，自定义颜色
+*/
+.box i{
+	position: absolute;
+	top: 1.6rem;
+	left: 45%;
+	margin-left: -15%;
+	color: #B2B2B2;
+}

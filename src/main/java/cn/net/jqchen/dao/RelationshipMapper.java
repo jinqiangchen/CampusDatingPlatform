@@ -11,7 +11,7 @@ public interface RelationshipMapper {
 
     int deleteByExample(RelationshipExample example);
 
-    int deleteByPrimaryKey(Integer owerId);
+    int deleteByPrimaryKey(Integer relationshipId);
 
     int insert(Relationship record);
 
@@ -19,7 +19,7 @@ public interface RelationshipMapper {
 
     List<Relationship> selectByExample(RelationshipExample example);
 
-    Relationship selectByPrimaryKey(Integer owerId);
+    Relationship selectByPrimaryKey(Integer relationshipId);
 
     int updateByExampleSelective(@Param("record") Relationship record, @Param("example") RelationshipExample example);
 

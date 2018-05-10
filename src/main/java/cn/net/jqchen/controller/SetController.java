@@ -22,7 +22,7 @@ public class SetController {
         String account=(String)request.getSession().getAttribute("account");
         backpwd.setUserAccount(account);
         setQuestionService.setQuestion(backpwd);
-        return "redirect:login/menu";
+        return "menu";
     }
 
 

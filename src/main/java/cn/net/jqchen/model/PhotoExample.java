@@ -175,52 +175,62 @@ public class PhotoExample {
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdEqualTo(Integer value) {
+        public Criteria andOwerIdEqualTo(String value) {
             addCriterion("ower_id =", value, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdNotEqualTo(Integer value) {
+        public Criteria andOwerIdNotEqualTo(String value) {
             addCriterion("ower_id <>", value, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdGreaterThan(Integer value) {
+        public Criteria andOwerIdGreaterThan(String value) {
             addCriterion("ower_id >", value, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOwerIdGreaterThanOrEqualTo(String value) {
             addCriterion("ower_id >=", value, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdLessThan(Integer value) {
+        public Criteria andOwerIdLessThan(String value) {
             addCriterion("ower_id <", value, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdLessThanOrEqualTo(Integer value) {
+        public Criteria andOwerIdLessThanOrEqualTo(String value) {
             addCriterion("ower_id <=", value, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdIn(List<Integer> values) {
+        public Criteria andOwerIdLike(String value) {
+            addCriterion("ower_id like", value, "owerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwerIdNotLike(String value) {
+            addCriterion("ower_id not like", value, "owerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwerIdIn(List<String> values) {
             addCriterion("ower_id in", values, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdNotIn(List<Integer> values) {
+        public Criteria andOwerIdNotIn(List<String> values) {
             addCriterion("ower_id not in", values, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdBetween(Integer value1, Integer value2) {
+        public Criteria andOwerIdBetween(String value1, String value2) {
             addCriterion("ower_id between", value1, value2, "owerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwerIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andOwerIdNotBetween(String value1, String value2) {
             addCriterion("ower_id not between", value1, value2, "owerId");
             return (Criteria) this;
         }

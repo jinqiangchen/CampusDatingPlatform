@@ -92,10 +92,16 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from user
     where user_account = #{userAccount,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+user_account,user_age,user_birthday,user_email,user_hobby,user_nickname,user_phone,user_picture,user_realname,user_registerTime,user_sex,user_state
+from user
+    where user_account LIKE "%"#{name}"%" or user_nickname LIKE "%"#{name}"%"
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user
